@@ -8,8 +8,10 @@ defmodule Scraper.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      {Registry, keys: :unique, name: Scraper.ConsumerRegistry},
       PageProducer,
-      PageConsumer
+      Supervisor.child_spec({PageConsumer, type: :page_consumer}, id: :consumer_a),
+      Supervisor.child_spec({PageConsumer, type: :page_consumer}, id: :consumer_b)
     ]
 
     opts = [strategy: :one_for_one, name: Scraper.Supervisor]
