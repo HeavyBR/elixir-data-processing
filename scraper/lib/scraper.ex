@@ -1,8 +1,13 @@
 defmodule Scraper do
   def work() do
-    1..5
+    1..100
     |> Enum.random()
-    |> :timer.seconds()
     |> Process.sleep()
+  end
+
+  def online?(_url) do
+    work()
+
+    Enum.random([false, true, true])
   end
 end
