@@ -5,6 +5,7 @@ defmodule Scraper do
     |> Process.sleep()
   end
 
+  @spec online?(any) :: any
   def online?(_url) do
     work()
 
